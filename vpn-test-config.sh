@@ -1,8 +1,10 @@
 #!/bin/bash
 
+#実行コマンド
+#bash vpn-test-config.sh {okamoto-kzk-test5}=$1の出力の値。要するにクライアント証明書の名。
+
 #置き換えの値
 echo "\$1 = $1"
-
 
 #対象のディレクトリに移動する
 cd $HOME/easy-rsa
