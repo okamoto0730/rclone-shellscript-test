@@ -10,6 +10,10 @@ cd $HOME/easy-rsa
 #クライアント証明書を発行する
 ./easyrsa build-client-full "$1" nopass
 
+
+
+
+
 #これはテストです
 test1=/c/Users/デスクトップ/github-remote/github-test
 
