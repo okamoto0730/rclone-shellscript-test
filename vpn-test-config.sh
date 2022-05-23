@@ -23,6 +23,16 @@ cd $HOME/easy-rsa/pki/issued/
 rclone copy "$1".crt dtest:
 
 
+cd $HOME/easy-rsa/pki/private/
+rclone copy "$1".key dtest:
+
+cd $HOME/easy-rsa/pki/reqs/
+rclone copy "$1".req dtest:
+
+
+#ovpn(OpenVPNのツールを利用している前提)ファイルを対象クライアント用に作成
+cd $HOME/ovpnfile/
+cp downloaded-client-config.ovpn "$1".ovpn
 
 
 
