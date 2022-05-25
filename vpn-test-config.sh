@@ -45,6 +45,10 @@ mv -i "$1".key $HOME/openvpn/
 cd $HOME/ovpnfile/
 mv -i "$1".ovpn $HOME/openvpn/
 
+#指定したファイルからファイルへ、特定行の文字列だけコピー＆ペーストする方法を、調査する。下記は例
+#head -84 okamoto-kzk-test0518.crt | tail -19 | > okamoto-kzk-test0518.ovpn
+
+
 
 
 #これはテストです
