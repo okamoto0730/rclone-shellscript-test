@@ -34,6 +34,17 @@ rclone copy "$1".req dtest:
 cd $HOME/ovpnfile/
 cp downloaded-client-config.ovpn "$1".ovpn
 
+#サーバー内で発行した「.crt」「.key」ファイルを移動させる。「openvpn」は移動先のディレクトリを指定する。例として記載
+cd $HOME/easy-rsa/pki/issued/
+mv -i "$1".crt $HOME/openvpn/
+
+cd $HOME/easy-rsa/pki/private/
+mv -i "$1".key $HOME/openvpn/
+
+#ovpnファイルも、移動させる。
+cd $HOME/ovpnfile/
+mv -i "$1".ovpn $HOME/openvpn/
+
 
 
 #これはテストです
