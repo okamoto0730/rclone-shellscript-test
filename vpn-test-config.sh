@@ -45,17 +45,39 @@ mv -i "$1".key $HOME/openvpn/
 cd $HOME/ovpnfile/
 mv -i "$1".ovpn $HOME/openvpn/
 
+#下記のディレクトリに移動して、
+cd $HOME/openvpn/
+
+#ovpnファイルを「BUILDCONFIG_FILE」として、置き換える。
+BUILDCONFIG_FILE="$1".ovpn
+
+#下記の追記が上手くいかない。確認中
+sed -e 'nobinda key [INLINE]\persist-key\persist-tun' ${BUILDCONFIG_FILE}
+#sed -e "/key [INLINE]/i \persist-key" >> ${BUILDCONFIG_FILE}
+#sed -e "/persist-key/i \persist-tun" >> ${BUILDCONFIG_FILE}
+#sed '3a aaaaaaaaa\nbbbbbbbbb' test.txt
+
+#置き換えた「BUILDCONFIG_FILE」の最後の行に【cert】を追記する
+echo "<cert>" >> ${BUILDCONFIG_FILE}
+openssl x509 -in "$1".crt -outform PEM >> ${BUILDCONFIG_FILE}
+echo "</cert>" >> ${BUILDCONFIG_FILE}
+
+#置き換えた「BUILDCONFIG_FILE」の最後の行に【key】を追記する
+echo "<key>" >> ${BUILDCONFIG_FILE}
+cat "$1".key >> ${BUILDCONFIG_FILE}
+echo "</key>" >> ${BUILDCONFIG_FILE}
+
+
+
+
 #指定したファイルからファイルへ、特定行の文字列だけコピー＆ペーストする方法を、調査する。下記は例
 #head -84 okamoto-kzk-test0518.crt | tail -19 | > okamoto-kzk-test0518.ovpn
 
-
-
-
-#これはテストです
+#これはテストです。メモ
 #test1=/c/Users/デスクトップ/github-remote/github-test
 
-#"〇〇"と、ダブルクォーテーション内の記述が実行される
+#"〇〇"と、ダブルクォーテーション内の記述が実行される。メモ
 #echo "cd $test1"
 
-#${〇〇}と、{}内の記述が実行される
+#${〇〇}と、{}内の記述が実行される。メモ
 #echo ${test1}_backup
