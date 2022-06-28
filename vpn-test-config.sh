@@ -68,9 +68,9 @@ cat "$1".key >> ${BUILDCONFIG_FILE}
 echo "</key>" >> ${BUILDCONFIG_FILE}
 
 
-#「reneg-sec 0」の文字を削除したい。確認中
-#sed '/キーワード/d'
-#sed -i '/reneg-sec 0/d' ${BUILDCONFIG_FILE}
+#「reneg-sec 0」の文字のみを削除する。
+sed -i 's/reneg-sec 0//g' ${BUILDCONFIG_FILE}
+#こちらを元に、上記記述作成した。　sed -i 's/文字列//g' target.txt
 
 
 
